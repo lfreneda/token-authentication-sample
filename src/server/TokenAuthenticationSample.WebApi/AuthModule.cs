@@ -12,6 +12,8 @@ namespace TokenAuthenticationSample.WebApi
         public AuthModule(ITokenizer tokenizer)
             : base("/auth")
         {
+            this.EnableCors();
+
             Post["/"] = x =>
             {
                 var userName = (string)this.Request.Form.UserName;
@@ -28,7 +30,7 @@ namespace TokenAuthenticationSample.WebApi
 
                 return new
                 {
-                    Token = token,
+                    access_token = token,
                 };
             };
 
@@ -36,15 +38,43 @@ namespace TokenAuthenticationSample.WebApi
             {
                 this.RequiresAuthentication();
 
-                return "Yay! You are authenticated!";
+                return HttpStatusCode.OK;
             };
+
+            Get["/authenticated-content"] = _ =>
+            {
+                this.RequiresAuthentication();
+
+                return Response.AsJson(new
+                {
+                    message = "Yay! You are authenticated! :)"
+                });
+            };
+
 
             Get["/admin"] = _ =>
             {
                 this.RequiresClaims(new[] { "admin" });
 
-                return "Yay! You are authorized!";
+                return Response.AsJson(new
+                {
+                    message = "Yay! You are the admin :P"
+                });
             };
+
+            Options["/"] = _ => HttpStatusCode.OK;
+        }
+    }
+
+    public static class NancyExtensions
+    {
+        public static void EnableCors(this NancyModule module)
+        {
+            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Origin", "*"));
+            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,OPTIONS"));
+            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"));
+            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Credentials", "true"));
+
         }
     }
 
