@@ -1,0 +1,30 @@
+{
+  "name": "token-authentication-sample",
+  "version": "1.0.0",
+  "description": "Simple sample of Token Authentication with .net n angularjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfreneda/token-authentication-sample.git"
+  },
+  "keywords": [
+    "angular",
+    ".net",
+    "nancy",
+    "ng",
+    "token",
+    "jwt",
+    "authentication",
+    "claims",
+    "csharp"
+  ],
+  "author": "lfreneda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfreneda/token-authentication-sample/issues"
+  },
+  "homepage": "https://github.com/lfreneda/token-authentication-sample#readme"
+}

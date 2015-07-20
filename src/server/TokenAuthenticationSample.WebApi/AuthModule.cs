@@ -35,12 +35,14 @@ namespace TokenAuthenticationSample.WebApi
             Get["/validation"] = _ =>
             {
                 this.RequiresAuthentication();
+
                 return "Yay! You are authenticated!";
             };
 
             Get["/admin"] = _ =>
             {
                 this.RequiresClaims(new[] { "admin" });
+
                 return "Yay! You are authorized!";
             };
         }
@@ -52,14 +54,12 @@ namespace TokenAuthenticationSample.WebApi
         {
             if (userName == "Luiz" && password == "Freneda")
             {
-
                 return new UserIdentity
                 {
                     UserName = "Luiz",
                     Claims = new[]
                     {
-                        "admin", 
-                       "owner" 
+                        "admin", "owner" 
                     }
                 };
             }
