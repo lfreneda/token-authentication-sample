@@ -8,7 +8,12 @@
 
     function oauth($http, currentUser) {
         return {
-            login: login
+            login: login,
+            logout: logout
+        };
+
+        function logout() {
+            currentUser.clear();
         };
 
         function formEncode(data) {

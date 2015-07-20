@@ -1,4 +1,6 @@
-<div>
+<div ng-controller="Home as home">
     <h1>Allowed page</h1>
     <p><a class="btn btn-primary btn-lg" href="#/authenticated-content">Enter authenticated page required</a></p>
+    <br/>
+    <input type="button" class="btn btn-primary btn-lg" ng-click="home.logOut();" value="log out">
 </div>
