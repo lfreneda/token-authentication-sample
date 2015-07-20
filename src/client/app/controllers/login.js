@@ -3,7 +3,7 @@
     var app = angular.module('security');
     app.controller('Login', Login);
 
-    function Login(oauth, $location) {
+    function Login(oauth, $location, loginRedirect) {
 
         var model = this;
         model.username = "";
@@ -12,8 +12,7 @@
         model.login = function () {
             oauth.login(model.username, model.password)
                 .then(function () {
-                    console.log('login ok');
-                    $location.path( "/" );
+                    loginRedirect.redirectPostLogin();
                 })
                 .catch(function (error) {
                     console.log('login error');
