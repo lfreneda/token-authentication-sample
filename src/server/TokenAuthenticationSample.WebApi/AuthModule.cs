@@ -16,8 +16,8 @@ namespace TokenAuthenticationSample.WebApi
 
             Post["/"] = x =>
             {
-                var userName = (string)this.Request.Form.UserName;
-                var password = (string)this.Request.Form.Password;
+                var userName = (string) this.Request.Form.UserName;
+                var password = (string) this.Request.Form.Password;
 
                 var userIdentity = UserDatabase.ValidateUser(userName, password);
 
@@ -40,6 +40,9 @@ namespace TokenAuthenticationSample.WebApi
 
                 return HttpStatusCode.OK;
             };
+
+
+            Options["/authenticated-content"] = _ => HttpStatusCode.OK;
 
             Get["/authenticated-content"] = _ =>
             {
@@ -72,7 +75,7 @@ namespace TokenAuthenticationSample.WebApi
         {
             module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Origin", "*"));
             module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,OPTIONS"));
-            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"));
+            module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"));
             module.After.AddItemToEndOfPipeline(x => x.Response.WithHeader("Access-Control-Allow-Credentials", "true"));
 
         }

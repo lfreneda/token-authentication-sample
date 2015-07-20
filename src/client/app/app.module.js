@@ -6,10 +6,12 @@
         {
             url: "/",
             settings: { templateUrl: "templates/home.html" }
-        }, {
+        },
+        {
             url: "/authenticated-content",
             settings: { templateUrl: "templates/authenticated-content.html"}
-        }, {
+        },
+        {
             url: "/login",
             settings: { templateUrl: "templates/login.html" }
         }

@@ -3,7 +3,7 @@
     var app = angular.module('security');
     app.controller('Login', Login);
 
-    function Login(oauth) {
+    function Login(oauth, $location) {
 
         var model = this;
         model.username = "";
@@ -11,11 +11,12 @@
 
         model.login = function () {
             oauth.login(model.username, model.password)
-                .then(function (result) {
-                    console.log(result);
+                .then(function () {
+                    console.log('login ok');
+                    $location.path( "/" );
                 })
-                .catch(function () {
-                    console.log(result);
+                .catch(function (error) {
+                    console.log('login error');
                 });
         };
 

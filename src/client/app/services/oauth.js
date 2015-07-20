@@ -6,7 +6,7 @@
 
     var loginUrl = 'http://localhost:45342/auth';
 
-    function oauth($http) {
+    function oauth($http, currentUser) {
         return {
             login: login
         };
@@ -35,6 +35,10 @@
             };
 
             return $http.post(loginUrl, data, options)
+                .then(function (response) {
+                    currentUser.setProfile(username, response.data.access_token);
+                    return username;
+                });
         }
     }
 })();
