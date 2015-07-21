@@ -13,6 +13,8 @@ This project is a working sample of token authentication with asp.net NancyFx RE
  - Login and redirect interceptor - when unauthorized, the user will be redirect to login page, after authenticated, will be redirect to previous route.
  - HTML5 localStorage to keep the user information after a hard refresh
 
+More info on Nancy Token Authencation see https://github.com/NancyFx/Nancy/wiki/Token-Authentication
+ 
 ### Client app
 
 ```
