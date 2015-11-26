@@ -30,3 +30,7 @@ client app will be available at localhost:8888/src/client/app/#/
 ```
 Open visual studio and hit f5 muwhahah ;-)
 ```
+
+#### Demo credentials
+
+Right username/password combination: username `Luiz`, password `Freneda`
